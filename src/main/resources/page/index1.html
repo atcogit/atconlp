@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="xuming">
+
+    <title>NLP-中文分词-xmnlp演示程序</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(
+                function () {
+                    $('#segButton').click(function () {
+
+                        $("#form1").attr("action", "../?method=base");
+                        $("#form1").attr("target", "BASE");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=index");
+                        $("#form1").attr("target", "INDEX");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=nlp");
+                        $("#form1").attr("target", "NLP");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=crf");
+                        $("#form1").attr("target", "CRF");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=hmm");
+                        $("#form1").attr("target", "HMM");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=nshort");
+                        $("#form1").attr("target", "NSHORT");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=pinyin");
+                        $("#form1").attr("target", "PINYIN");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=traditionalchinese");
+                        $("#form1").attr("target", "TRADITIONALCHINESE");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=simplechinese");
+                        $("#form1").attr("target", "SIMPLECHINESE");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=keyword");
+                        $("#form1").attr("target", "KEYWORD");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=summary");
+                        $("#form1").attr("target", "SUMMARY");
+                        $("#form1").submit();
+
+
+                    });
+
+                });
+    </script>
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">NLP-中文分词-演示程序</a>
+            <a class="navbar-brand" href="#">author:xuming</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form name="form1" id="form1" method="post">
+        <div class="starter-template">
+            <textarea style="width: 100%;" rows="10" name="input">演示：爱国是信任人民，不是信任某个政体或制度，重载不是重任。匡扶正义？你這是繁體字，沒簡體。15日，备受关注的电影《黄金时代》在北京举行了电影发布会，导演许鞍华和编剧李樯及汤唯、冯绍峰等众星悉数亮相。悉，电影确定将于10月1日公映。</textarea>
+
+            <div class="btn-group btn-group-lg navbar-right">
+                <input type="button" class="btn btn-arrow btn-radius" id="segButton" value="点我"/>
+            </div>
+        </div>
+    </form>
+    <div class="starter-template">
+
+        <h4>精准 分词方式</h4>
+        <iframe name="BASE" style="width: 100%"></iframe>
+        <h4>索引 分词方式</h4>
+        <iframe name="INDEX" style="width: 100%"></iframe>
+        <h4>NLP 分词方式</h4>
+        <iframe name="NLP" style="width: 100%"></iframe>
+        <h4>CRF 分词方式</h4>
+        <iframe name="CRF" style="width: 100%"></iframe>
+        <h4>HMM 分词方式</h4>
+        <iframe name="HMM" style="width: 100%"></iframe>
+        <h4>N最短路 分词方式</h4>
+        <iframe name="NSHORT" style="width: 100%"></iframe>
+        <h4>汉字转拼音</h4>
+        <iframe name="PINYIN" style="width: 100%"></iframe>
+        <h4>繁体 分词方式</h4>
+        <iframe name="TRADITIONALCHINESE" style="width: 100%"></iframe>
+        <h4>繁转简</h4>
+        <iframe name="SIMPLECHINESE" style="width: 100%"></iframe>
+        <h4>关键词提取</h4>
+        <iframe name="KEYWORD" style="width: 100%"></iframe>
+        <h4>摘要提取</h4>
+        <iframe name="SUMMARY" style="width: 100%"></iframe>
+        <h4>机构名称提取</h4>
+        <iframe name="ORGANIZATION" style="width: 100%"></iframe>
+    </div>
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+

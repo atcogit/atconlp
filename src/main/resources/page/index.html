@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="xm">
+
+    <title>NLP-中文分词-xmnlp演示程序</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/global.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/toggle-switch.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        div.x-goto-top {
+            display: none;
+            opacity: 0.9;
+            z-index: 999999;
+            position: fixed;
+            bottom: 113px;
+            right: 5%;
+            margin-left: 40px;
+            width: 38px;
+            height: 38px;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #0593d3;
+        }
+
+        div.x-goto-top:hover {
+            background-color: #fafafa;
+            border-color: #0482ba;
+        }
+
+        div.x-goto-top:hover div.x-arrow {
+            border-bottom-color: #0482ba;
+        }
+
+        div.x-goto-top:hover div.x-stick {
+            background-color: #0482ba;
+        }
+
+        div.x-goto-top div.x-arrow {
+            position: absolute;
+            left: 10px;
+            top: -1px;
+            width: 0;
+            height: 0;
+            border: 9px solid transparent;
+            border-bottom-color: #0593d3;
+        }
+
+        div.x-goto-top div.x-stick {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            width: 8px;
+            height: 14px;
+            display: block;
+            border-radius: 1px;
+            background-color: #0593d3;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(
+                function () {
+                    $('#segButton').click(function () {
+
+                        $("#form1").attr("action", "../?method=base");
+                        $("#form1").attr("target", "BASE");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=index");
+                        $("#form1").attr("target", "INDEX");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=nlp");
+                        $("#form1").attr("target", "NLP");
+                        $("#form1").submit();
+
+                        /*$("#form1").attr("action", "../?method=crf");
+                        $("#form1").attr("target", "CRF");
+                        $("#form1").submit();*/
+
+                        /*$("#form1").attr("action", "../?method=hmm");
+                         $("#form1").attr("target", "HMM");
+                         $("#form1").submit();*/
+
+                        /*$("#form1").attr("action", "../?method=nshort");
+                         $("#form1").attr("target", "NSHORT");
+                         $("#form1").submit();*/
+
+                        $("#form1").attr("action", "../?method=pinyin");
+                        $("#form1").attr("target", "PINYIN");
+                        $("#form1").submit();
+
+                        /*$("#form1").attr("action", "../?method=traditionalchinese");
+                         $("#form1").attr("target", "TRADITIONALCHINESE");
+                         $("#form1").submit();*/
+
+                        /*$("#form1").attr("action", "../?method=simplechinese");
+                         $("#form1").attr("target", "SIMPLECHINESE");
+                         $("#form1").submit();*/
+
+                        $("#form1").attr("action", "../?method=keyword");
+                        $("#form1").attr("target", "KEYWORD");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=summary");
+                        $("#form1").attr("target", "SUMMARY");
+                        $("#form1").submit();
+
+                        /*$("#form1").attr("action", "../?method=recommend");
+                         $("#form1").attr("target", "RECOMMEND");
+                         $("#form1").submit();*/
+
+                        $("#form1").attr("action", "../?method=organization");
+                        $("#form1").attr("target", "ORGANIZATION");
+                        $("#form1").submit();
+
+                        $("#form1").attr("action", "../?method=personname");
+                        $("#form1").attr("target", "PERSONNAME");
+                        $("#form1").submit();
+                    });
+
+                });
+    </script>
+
+</head>
+<body>
+<div class="x-goto-top">
+    <div class="x-arrow"></div>
+    <div class="x-stick"></div>
+</div>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">NLP工具包-xmnlp</a>
+            <span>         </span>
+            <span>         </span>
+            <a class="navbar-brand" href="#">author: xuming</a>
+        </div>
+    </div>
+</div>
+
+<div id="demo-page">
+    <div id="demo-container" class="container">
+        <form name="form1" id="form1" method="post">
+            <div class="breadcrumb breadcrumb-bottom">
+                <span>您现在的位置:</span>
+                <a href="#">首页</a>
+                <span class="html-char">&gt;</span>
+                <span>演示</span>
+                <span class="html-char">&gt;</span>
+                <span>xmnlp演示</span>
+            </div>
+            <div class="input-chunk chunk">
+                <textarea id="txt-analysis" class="input" name="input">演示：爱国是信任人民，不是信任某个政体或制度，重载不是重任。匡扶正义？你這是繁體字，沒簡體。15日，备受关注的电影《黄金时代》在北京电影学院举行了电影发布会，邀请了中国传媒大学的同仁参加，导演许鞍华和编剧李樯和演员汤唯、冯绍峰等众星悉数亮相。悉，电影确定将于10月1日在深圳百大华有限公司公映。</textarea>
+                <input type="button" id="segButton" class="btn btn-arrow btn-radius" value=" 咻咻咻"/>
+
+                <div class="warn-msg hide">
+                    <span class="txt">目前仅支持GBK字符集。分析结果已过滤暂不支持的语言或字符。</span>
+                </div>
+            </div>
+        </form>
+        <div class="main-title">
+            <span class="dot-line-gray"></span>
+            <span class="title">分析结果</span>
+        </div>
+        <div class="demo-content">
+            <div id="sideBar" class="col-xs-3 bs-sidebar"  role="complementary">
+                <div class="chunk bs-sidebar-chunk">
+                    <ul class="nav">
+                        <li class=" analysis">
+                            <a class="hide" href="#overview-analysis"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-analysis"><span class="icon"></span>精准分词</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                        <li class=" ner">
+                            <a class="hide" href="#overview-index"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-index"><span class="icon"></span>索引分词</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                        <li class=" depend">
+                            <a class="hide" href="#overview-nlp"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-nlp"><span class="icon"></span>NLP分词</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                        <!--<li class=" info">
+                            <a class="hide" href="#overview-crf"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-crf"><span class="icon"></span>CRF分词</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>-->
+
+                        <li class=" emotion">
+                            <a class="hide" href="#overview-pinyin"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-pinyin"><span class="icon"></span>拼音标注</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                        <li class=" summary">
+                            <a class="hide" href="#overview-summary"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-summary"><span class="icon"></span>摘要提取</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+
+                        <li class=" key">
+                            <a class="hide" href="#overview-key"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-key"><span class="icon"></span>关键词提取</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                        <!--<li class=" semantic">
+                            <a class="hide" href="#overview-semantic"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-semantic"><span class="icon"></span>语义联想</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>-->
+                        <li class=" organization">
+                            <a class="hide" href="#overview-organization"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-organization"><span class="icon"></span>机构名称提取</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+
+                        <li class=" personname">
+                            <a class="hide" href="#overview-personname"></a>
+
+                            <div class="arrow"></div>
+                            <div class="title">
+                                <a href="#overview-personname"><span class="icon"></span>人名提取</a>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-9 main-content" role="main">
+                <div id="overview-analysis" class="chunk">
+                    <div class="col-xs-12">
+                        <div class="title">精准分词:</div>
+                    </div>
+                    <iframe name="BASE" style="width: 100%"></iframe>
+                    <div class="col-xs-3">
+                        <dl class="word-mean"></dl>
+                    </div>
+                </div>
+
+                <div id="overview-index" class="chunk">
+                    <div class="col-xs-12">
+                        <div class="title">索引分词:</div>
+                    </div>
+                    <iframe name="INDEX" style="width: 100%"></iframe>
+                    <div class="col-xs-3">
+                        <dl class="word-mean"></dl>
+                    </div>
+                </div>
+
+                <div id="overview-nlp" class="chunk">
+                    <div class="title">NLP分词:</div>
+                    <iframe name="NLP" style="width: 100%"></iframe>
+                </div>
+                <!--<div id="overview-crf" class="chunk">
+                    <div class="title">CRF分词:</div>
+                    <iframe name="CRF" style="width: 100%"></iframe>
+                </div>-->
+
+                <div id="overview-pinyin" class="chunk">
+                    <div class="title">拼音标注:</div>
+                    <iframe name="PINYIN" style="width: 100%"></iframe>
+                </div>
+                <div id="overview-summary" class="chunk">
+                    <div class="col-xs-12">
+                        <div class="title">摘要提取:</div>
+                    </div>
+                    <iframe name="SUMMARY" style="width: 100%"></iframe>
+                </div>
+
+                <div id="overview-key" class="chunk">
+                    <div class="title">关键词提取:</div>
+                    <iframe name="KEYWORD" style="width: 100%"></iframe>
+                </div>
+                <!--<div id="overview-semantic" class="chunk">
+                    <div class="title">语义联想(文本推荐):</div>
+                    <iframe name="RECOMMEND" style="width: 100%"></iframe>
+                </div>-->
+                <div id="overview-organization" class="chunk">
+                    <div class="title">机构名称提取:</div>
+                    <iframe name="ORGANIZATION" style="width: 100%"></iframe>
+                </div>
+                <div id="overview-personname" class="chunk">
+                    <div class="title">人名提取:</div>
+                    <iframe name="PERSONNAME" style="width: 100%"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--<div id="btn-back-top">
+        <span class="icon"></span>
+    </div>-->
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文本演示 - xmnlp</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content ="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="http://static.bosonnlp.com/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.bosonnlp.com/vendor/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.bosonnlp.com/stylesheets/global.css?01e4aed" />
+
+    <link rel="stylesheet" type="text/css" href="http://static.bosonnlp.com/vendor/css-toggle-switch/dist/toggle-switch.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.bosonnlp.com/stylesheets/demo.css?01e4aed" />
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://static.bosonnlp.com/vendor/es5-shim/es5-shim.min.js"></script>
+    <![endif]-->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?6629d4aae357d8d3e47238c93f1e1d78";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+
+<div id="page-header" class="nav" role="navigation">
+    <div class="container">
+        <a href="/" class="logo"><img alt="logo" src="http://static.bosonnlp.com/images/logo/2/175x69_1.png" /></a>
+        <ul class="navbar-right">
+            <li class="txt home"><a href="/" ><span class="icon"></span>首页</a></li>
+            <li class="txt production"><a href="/product" ><span class="icon"></span>产品</a></li>
+            <li class="txt develper hide"><a href="#" ><span class="icon"></span>开发者</a></li>
+            <li class="txt demo"><a href="/demo"  class="selected" ><span class="icon"></span>演示</a></li>
+            <li class="txt document"><a href="/dev/center" ><span class="icon"></span>开发者</a></li>
+
+            <li class="txt document"><a href="/about" ><span class="glyphicon glyphicon-user"></span>关于</a></li>
+
+            <li class="signin"><a href="/account/login">登录</a></li>
+            <li class="signup"><a href="/account/register">注册</a></li></ul>
+    </div>
+</div>
+<div id="content-page">
+
+    <div id="sub-navbar">
+        <div class="container">
+            <ul>
+                <li  class="selected" ><a href="/demo">单文本演示</a><span></span></li>
+                <li ><a href="/demo2">多文本演示</a><span></span></li>
+                <li ><a href="/lab">玻森实验室</a><span></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="demo-page">
+        <div id="demo-container" class="container">
+            <div class="breadcrumb breadcrumb-bottom">
+                <span>您现在的位置:</span>
+                <a href="/">首页</a>
+                <span class="html-char">&gt;</span>
+                <span>演示</span>
+                <span class="html-char">&gt;</span>
+                <span>单文本演示</span>
+            </div>
+            <div class="input-chunk chunk">
+                <textarea id="txt-analysis" class="input"></textarea>
+                <a id="btn-analysis" class="btn btn-arrow btn-radius" href="javascript:void(0)"><span class="icon"></span>提交文本</a>
+                <div class="warn-msg hide">
+                    <span class="icon"></span>
+                    <span class="txt">目前仅支持GBK字符集。分析结果已过滤暂不支持的语言或字符。</span>
+                </div>
+            </div>
+            <div class="main-title">
+                <span class="dot-line-gray"></span>
+                <span class="title">分析结果</span>
+            </div>
+            <div class="demo-content">
+                <div id="sideBar" class="col-xs-3 bs-sidebar" width="100%" role="complementary">
+                    <div class="chunk bs-sidebar-chunk">
+                        <ul class="nav">
+                            <li class=" analysis">
+                                <a class="hide" href="#overview-analysis"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-analysis"><span class="icon"></span>词性分析</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" ner">
+                                <a class="hide" href="#overview-ner"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-ner"><span class="icon"></span>实体识别</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" depend">
+                                <a class="hide" href="#overview-depend"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-depend"><span class="icon"></span>依存文法</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" emotion">
+                                <a class="hide" href="#overview-emotion"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-emotion"><span class="icon"></span>情感分析</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" summary">
+                                <a class="hide" href="#overview-summary"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-summary"><span class="icon"></span>新闻摘要</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" info">
+                                <a class="hide" href="#overview-info"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-info"><span class="icon"></span>新闻分类</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" key">
+                                <a class="hide" href="#overview-key"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-key"><span class="icon"></span>关键词提取</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                            <li class=" semantic">
+                                <a class="hide" href="#overview-semantic"></a>
+                                <div class="arrow"></div>
+                                <div class="title">
+                                    <a href="#overview-semantic"><span class="icon"></span>语义联想</a>
+                                </div>
+                                <div class="line"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-9 main-content" role="main">
+                    <div id="overview-analysis" class="chunk">
+                        <div class="col-xs-12">
+                            <div class="title">词性分析:<a class="docs" href="http://docs.bosonnlp.com/tag.html" target="_blank">查看文档</a></div>
+                        </div>
+                        <div class="col-xs-9">
+                            <dl class="words"></dl>
+                        </div>
+                        <div class="col-xs-3">
+                            <dl class="word-mean"></dl>
+                        </div>
+                        <div class="loading"></div>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+
+                    <div id="overview-ner" class="chunk">
+                        <div class="col-xs-12">
+                            <div class="title">实体识别:<a class="docs" href="http://docs.bosonnlp.com/ner.html" target="_blank">查看文档</a></div>
+                        </div>
+                        <div  class="col-xs-9">
+                            <dl class="words"></dl>
+                        </div>
+                        <div class="col-xs-3">
+                            <dl class="word-mean"></dl>
+                        </div>
+                        <div class="loading"></div>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+
+                    <div id="overview-depend" class="chunk">
+                        <div class="title">依存文法:<a class="docs" href="http://docs.bosonnlp.com/depparser.html" target="_blank">查看文档</a></div>
+                        <div class="depend-tree">
+                        </div>
+                        <div class="tree-shadow-wrap hide"><div class="tree-shadow"></div><input type="button" class="btn" value="全屏查看" /></div>
+                        <span class="loading"></span>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+
+                    <div id="overview-emotion" class="chunk">
+                        <div class="title">情感分析:<a class="docs" href="http://docs.bosonnlp.com/sentiment.html" target="_blank">查看文档</a></div>
+                        <div class="row">
+                            <dl class="emotion-tips hide">
+                                <dt>
+                                <ul>
+                                    <li class="positive"><span class="icon"></span>正面</li>
+                                    <li class="passive"><span class="icon"></span>负面</li>
+                                </ul>
+                                </dt>
+                                <dd>负面指数:</dd>
+                                <dd>0~0.5之间判断为负面，</dd>
+                                <dd>0.5~1之间判断为正面。</dd>
+                                <dd>可调用高级接口获取负面指数，自定义判断标准。</dd>
+                            </dl>
+                            <div class="emotion-chart"></div>
+                        </div>
+                        <span class="loading"></span>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+                    <div id="overview-summary" class="chunk">
+                        <div class="col-xs-12">
+                            <div class="title">新闻摘要:<a class="docs" href="http://docs.bosonnlp.com/summary.html" target="_blank">查看文档</a></div>
+                        </div>
+                        <div class="col-xs-12">
+                            <p class="result"></p>
+                        </div>
+                        <div class="loading"></div>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+                    <div id="overview-info" class="chunk">
+                        <div class="title">新闻分类:<a class="docs" href="http://docs.bosonnlp.com/classify.html" target="_blank">查看文档</a></div>
+                        <ul class="info-containers">
+                        </ul>
+                        <div class="title title-other hide">关键词标签:</div>
+                        <ul class="keywords-tags hide">
+                        </ul>
+                        <span class="loading"></span>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+                    <div id="overview-key" class="chunk">
+                        <div class="title">关键词提取:<a class="docs" href="http://docs.bosonnlp.com/keywords.html" target="_blank">查看文档</a></div>
+                        <div class="result"></div>
+                        <span class="loading"></span>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+                    <div id="overview-semantic" class="chunk">
+                        <div class="title">语义联想:<a class="docs" href="http://docs.bosonnlp.com/suggest.html" target="_blank">查看文档</a></div>
+                        <div class="result"></div>
+                        <span class="loading"></span>
+                        <div class="warn-tips hide"><span class="icon"></span><span class="txt"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="btn-back-top">
+            <span class="icon"></span>
+        </div>
+    </div>
+
+</div>
+<div id="page-footer" >
+    <div class="container">
+        <div class="column"><a href="/" class="logo"><img alt="logo" src="http://static.bosonnlp.com/images/logo/2/175x69_1.png" /></a></div>
+        <dl class="column">
+            <dt>产品</dt>
+            <dd><a href="/product/intro"><span class="icon"></span>NLP是什么？</a></dd>
+            <dd><a href="/product"><span class="icon"></span>产品</a></dd>
+            <dd><a href="/product/solution"><span class="icon"></span>口碑分析</a></dd>
+        </dl>
+        <dl class="column">
+            <dt>演示</dt>
+            <dd><a href="/demo"><span class="icon"></span>单文本演示</a></dd>
+            <dd><a href="/demo2"><span class="icon"></span>多文本演示</a></dd>
+            <dd><a href="/lab"><span class="icon"></span>玻森实验室</a></dd>
+        </dl>
+        <dl class="column">
+            <dt>开发者</dt>
+            <dd><a href="/dev/center"><span class="icon"></span>开发者中心</a></dd>
+            <dd><a href="http://docs.bosonnlp.com/" target="_blank"><span class="icon"></span>API文档</a></dd>
+            <dd><a href="http://bosonnlp-py.readthedocs.org/#bosonnlp" target="_blank"><span class="icon"></span>SDK文档</a></dd>
+            <dd><a href="/dev/resource"><span class="icon"></span>数据下载</a></dd>
+            <dd><a href="/dev/logo"><span class="icon"></span>LOGO标识</a></dd>
+        </dl>
+        <dl class="column">
+            <dt>关于</dt>
+            <dd><a href="/about"><span class="icon"></span>团队</a></dd>
+            <dd><a href="http://www.bosondata.com.cn/team" target="_blank"><span class="icon"></span>管理团队</a></dd>
+            <dd><a href="http://www.bosondata.com.cn/jobs" target="_blank"><span class="icon"></span>加入我们</a></dd>
+            <dd><a href="/about#contact"><span class="icon"></span>联系我们</a></dd>
+        </dl>
+        <dl class="weixin">
+            <dt>微信扫一扫</dt>
+            <dd><img src="/images/getqrcode.jpg" alt="微信二维码" /></dd>
+        </dl>
+        <div class="line"></div>
+        <div class="copyright">
+            <div class="info">
+                <a href="/about" target="_blank">关于我们</a>
+                <span>/</span>
+                <a href="/about#contact" target="_blank">联系信息</a>
+                <span>/</span>
+                <a href="http://www.bosondata.com.cn/jobs" target="_blank">招聘英才</a>
+                <span>/</span>
+                <a target="_blank" href="http://weibo.com/bosondata" class="weibo icon"></a>
+            </div>
+            Copyright 2016 Bosondata. All Rights Reserved.
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hidden-referer" value="" />
+
+<input type="hidden" value=" 0 " id="hidden_auth" />
+</body>
+</html>
+
+<script type="text/javascript" src="http://static.bosonnlp.com/vendor/requirejs/require.min.js"></script>
+<script type="text/javascript" src="http://static.bosonnlp.com/javascripts/require.config.js?01e4aed"></script>
+
+
+<script>require(['demo'], function () {})</script>
+
+
